@@ -910,7 +910,7 @@ function done(t){m.textContent=t;setTimeout(function(){m.textContent=''},3000)}
 if(navigator.share){navigator.share(data).catch(function(){})}
 else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){done('Link copied!')},function(){done(url)})}
 else{done(url)}})})();
-var SIGNUP_ENDPOINT='';
+var SIGNUP_ENDPOINT='https://script.google.com/macros/s/AKfycbwBlaOzQak7hNUaQd3YdvmZK2jH0HlJJgh_PD5SNLejEo_KHF-V7lvNh5Um5S9DmT4g9A/exec';
 document.getElementById('go').addEventListener('click',function(){
   var v=document.getElementById('email').value.trim(),t=document.getElementById('thanks');
   var nm=(document.getElementById('fname').value||'').trim(),ok=document.getElementById('age').checked,msg;
