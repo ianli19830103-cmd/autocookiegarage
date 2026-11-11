@@ -494,7 +494,7 @@ html.tabs [data-tab].on{animation:tabin .65s cubic-bezier(.34,1.3,.64,1)}
 <div class="wrap">
   <nav>
     <a class="logo" href="#top" aria-label="AutoCookie Garage"><span class="mark" role="img" aria-hidden="true"></span></a>
-    <div class="links"><a class="link" href="#top">Home</a><a class="link" href="#collection">Collection</a><a class="link" href="#how">Guide</a><a class="link" href="#about">Our Story</a><a class="link" href="#join">Join the community</a><a class="link" href="#team">Team</a></div><button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Turn sound on"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><g class="w" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></g><path class="x" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="links"><a class="link" href="#top">Home</a><a class="link" href="#collection">Collection</a><a class="link" href="#how">Guide</a><a class="link" href="#about">Our Story</a><a class="link" href="#join">Join the community</a></div><button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Turn sound on"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><g class="w" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></g><path class="x" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
   </nav>
 
   <header class="hero" id="top">
@@ -748,26 +748,10 @@ html.tabs [data-tab].on{animation:tabin .65s cubic-bezier(.34,1.3,.64,1)}
         <input id="email" type="email" placeholder="Your email" aria-label="Your email" autocomplete="email">
         <label class="agree"><input id="age" type="checkbox"> I am 13 or older, or a grown-up is helping me.</label>
         <div class="jsum"><span id="jsumtxt">Choose a pack to see your total.</span><b id="jsumtot"></b></div>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0">
         <button class="btn" id="go" type="button">Join the community</button>
         <div class="thanks" id="thanks" aria-live="polite"></div>
       </div>
-    </div>
-  </section>
-
-  <section id="team">
-    <p class="eyebrow">Team only</p>
-    <h2>Founders&rsquo; room</h2>
-    <div class="gate" id="gate">
-      <p>Enter the 10-digit passcode to open the team tools.</p>
-      <div class="gaterow"><input id="pin" type="password" inputmode="numeric" maxlength="10" placeholder="10-digit passcode" aria-label="10-digit passcode" autocomplete="off"><button class="btn" id="pinGo" type="button">Unlock</button></div>
-      <p class="pinmsg" id="pinMsg" aria-live="polite"></p>
-    </div>
-    <div class="vault" id="vault" hidden>
-      <h3>Sign-up sheet</h3>
-      <p>This opens the private Google Sheet with every name and email. Only people you have shared the sheet with can see it, and Google asks them to sign in first.</p>
-      <div class="gaterow"><a class="btn" id="sheetBtn" href="#team" target="_blank" rel="noopener">Open the sign-up sheet</a><button class="btn ghost" id="lockBtn" type="button">Lock</button></div>
-      <p class="pinmsg" id="sheetNote"></p>
-      <ul class="det"><li>Share the sheet only with Ian, Tal and a parent</li><li>Google sign-in is what protects the list, not this passcode</li><li>Never post the passcode or the sheet link in public</li></ul>
     </div>
   </section>
 
@@ -802,7 +786,7 @@ st.addEventListener('pointerleave',function(){st.style.transform=''})})();
 (function(){var TABS=true;if(!TABS)return;
 var H=document.documentElement;H.classList.add('tabs');
 var st=document.querySelectorAll('.strip'),g=function(i){return document.getElementById(i)};
-var map={home:[document.querySelector('.hero'),document.getElementById('hub')],collection:[g('collection')],how:[g('how'),g('faq')],about:[g('about'),g('founders')],join:[g('join')],team:[g('team')]};
+var map={home:[document.querySelector('.hero'),document.getElementById('hub')],collection:[g('collection')],how:[g('how'),g('faq')],about:[g('about'),g('founders')],join:[g('join')]};
 Object.keys(map).forEach(function(k){if(k==='home')return;var out=[];map[k].forEach(function(el){var pv=el&&el.previousElementSibling;if(pv&&pv.classList.contains('strip'))out.push(pv);out.push(el)});map[k]=out});
 var alias={top:'home',founders:'about',faq:'how'};
 Object.keys(map).forEach(function(k){map[k].forEach(function(el){if(el)el.setAttribute('data-tab',k)})});
@@ -833,14 +817,6 @@ var pv=O[i-1],nx=O[i+1];tn.innerHTML=(pv?'<a href="#'+pv[0]+'">\u2190 '+pv[1]+'<
 document.querySelectorAll('.links a').forEach(function(a){if(a.classList.contains('active'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})};
 var on=document.querySelector('[data-tab].on');if(on)window.__tabHook(on.getAttribute('data-tab'));
 var st=document.querySelector('.stage');if(st)st.addEventListener('click',function(){var el=st.querySelectorAll('*');for(var n=0;n<el.length;n++)el[n].style.animation='none';var sv=st.querySelector('svg');if(sv)sv.style.animation='none';void st.offsetWidth;for(n=0;n<el.length;n++)el[n].style.animation='';if(sv)sv.style.animation=''})})();
-(function(){var PIN='4827159306',SHEET_URL='https://docs.google.com/spreadsheets/d/10_4CSh09JtVxzLuUicPF-N9nEgKYHYA6rKE49Mx5gug/edit?gid=0#gid=0';
-var g=document.getElementById('gate'),v=document.getElementById('vault'),pin=document.getElementById('pin'),msg=document.getElementById('pinMsg'),btn=document.getElementById('sheetBtn'),note=document.getElementById('sheetNote');
-function open(){g.hidden=true;v.hidden=false;if(SHEET_URL){btn.href=SHEET_URL;note.textContent=''}else{btn.removeAttribute('href');btn.setAttribute('aria-disabled','true');btn.style.opacity='.5';note.textContent='The sheet link is not set up yet. Send it to your website helper to connect it.'}}
-function lock(){v.hidden=true;g.hidden=false;pin.value='';msg.textContent=''}
-function tryPin(){if(pin.value===PIN){open()}else{msg.textContent='That code is not right. Try again.';pin.value=''}}
-document.getElementById('pinGo').addEventListener('click',tryPin);
-pin.addEventListener('keydown',function(e){if(e.key==='Enter')tryPin()});
-document.getElementById('lockBtn').addEventListener('click',lock)})();
 (function(){var st=document.querySelector('.stage');if(!st||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var C=['#f1dba4','#d9b46c','#ff8f7e','#7fd1ff','#fff4d6','#b6f0a8'];
 st.addEventListener('click',function(){var r=st.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height*.55;
@@ -910,6 +886,7 @@ function done(t){m.textContent=t;setTimeout(function(){m.textContent=''},3000)}
 if(navigator.share){navigator.share(data).catch(function(){})}
 else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){done('Link copied!')},function(){done(url)})}
 else{done(url)}})})();
+window.__t0=Date.now();
 var SIGNUP_ENDPOINT='https://script.google.com/macros/s/AKfycbwBlaOzQak7hNUaQd3YdvmZK2jH0HlJJgh_PD5SNLejEo_KHF-V7lvNh5Um5S9DmT4g9A/exec';
 document.getElementById('go').addEventListener('click',function(){
   var v=document.getElementById('email').value.trim(),t=document.getElementById('thanks');
@@ -919,7 +896,14 @@ else if(window.__packN>=1&&window.__packTotal<window.__packN){msg='Choose all '+
 else if(!/^\S+@\S+\.\S+$/.test(v)){msg='Enter a valid email to join the community.'}
 else if(!ok){msg='Please check the box so we know you are 13 or older, or a grown-up is helping.'}
 else{msg='Welcome to the community'+(nm?', '+nm:'')+'! Thank you!'+(window.__pick?' Your pick: '+window.__pick+'.':'')+(window.__packNote?' Stamps: '+window.__packNote+'.':'')}
-t.textContent=msg;if(/^Welcome/.test(msg)&&SIGNUP_ENDPOINT){try{fetch(SIGNUP_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({name:nm,email:v,pack:window.__pick||'',stamps:window.__packNote||''})}).catch(function(){t.textContent='We could not save that just now. Please try again in a moment.'})}catch(e){}}
+var okMsg=/^Welcome/.test(msg),skip=false;
+if(okMsg){var bot=((document.getElementById('website')||{}).value||'')!==''||(Date.now()-(window.__t0||0))<4000;if(bot)skip=true;
+var L=[];try{L=JSON.parse(localStorage.getItem('acg_sub')||'[]').filter(function(x){return Date.now()-x<86400000})}catch(e){}
+if(L.length&&Date.now()-L[L.length-1]<60000){msg='Please wait a minute before joining again.';okMsg=false}
+else if(L.length>=3){msg='You have already joined a few times today. Thank you!';okMsg=false}
+if(okMsg&&!skip){L.push(Date.now());try{localStorage.setItem('acg_sub',JSON.stringify(L))}catch(e){}}}
+t.textContent=msg;
+if(okMsg&&!skip&&SIGNUP_ENDPOINT){try{fetch(SIGNUP_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({name:nm,email:v,pack:window.__pick||'',stamps:window.__packNote||'',hp:'',token:'acg-VKh7uQegCW0TTQ',ts:Date.now()-(window.__t0||0)})}).catch(function(){t.textContent='We could not save that just now. Please try again in a moment.'})}catch(e){}}
 });
 </script>
 <div class="drive" aria-hidden="true"><svg viewBox="0 0 120 50" width="96"><defs><linearGradient id="dg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1dba4"/><stop offset="1" stop-color="#c79b4f"/></linearGradient></defs><g transform="translate(120 0) scale(-1 1)"><path d="M6 34Q6 26 16 25L34 24Q42 10 58 10L78 10Q90 10 98 22L108 26Q114 28 114 34L114 38L6 38Z" fill="url(#dg2)"/><path d="M40 24Q46 14 58 14L76 14Q84 14 90 24Z" fill="#1a1208" opacity=".75"/></g><g class="wh"><circle cx="32" cy="38" r="8" fill="#1a1208" stroke="#d9b46c" stroke-width="2"/><path d="M32 31V45M25 38H39" stroke="#d9b46c" stroke-width="1.6"/></g><g class="wh"><circle cx="90" cy="38" r="8" fill="#1a1208" stroke="#d9b46c" stroke-width="2"/><path d="M90 31V45M83 38H97" stroke="#d9b46c" stroke-width="1.6"/></g></svg></div>
